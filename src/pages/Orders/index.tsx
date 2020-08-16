@@ -34,7 +34,7 @@ const Orders: React.FC = () => {
     async function loadOrders(): Promise<void> {
       // Load orders from API
       const { data } = await api.get<Food[]>('orders');
-      console.log(data);
+
       setOrders(data);
     }
 

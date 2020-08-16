@@ -93,25 +93,27 @@ const FoodDetails: React.FC = () => {
   }, [routeParams]);
 
   function handleIncrementExtra(id: number): void {
-    // Increment extra quantity
-    const increments = extras.map(increment => {
-      if (increment.id === id) increment.quantity + 1;
-      return increment;
-    });
-
-    setExtras(increments);
+    setExtras([
+      ...extras.map(extra => {
+        if (extra.id === id) {
+          extra.quantity += 1;
+        }
+        return extra;
+      }),
+    ]);
   }
 
   function handleDecrementExtra(id: number): void {
     // Decrement extra quantity
-    const increments = extras.map(increment => {
-      if (increment.id === id && increment.quantity > 0) {
-        increment.quantity - 1;
-        return increment;
-      }
-    });
 
-    setExtras(increments);
+    setExtras([
+      ...extras.map(extra => {
+        if (extra.id === id && extra.quantity > 0) {
+          extra.quantity -= 1;
+        }
+        return extra;
+      }),
+    ]);
   }
 
   function handleIncrementFood(): void {
