@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadFoods(): Promise<void> {
       // Load Foods from API
-      const response = await api.get<Food[]>('foods', {
+      const { data } = await api.get<Food[]>('foods', {
         params: {
           name_like: searchValue,
           category_like: selectedCategory,
@@ -71,7 +71,7 @@ const Dashboard: React.FC = () => {
       });
 
       setFoods(
-        response.data.map((food: Food) => {
+        data.map((food: Food) => {
           return {
             ...food,
             formattedPrice: formatValue(food.price),
@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
           name="log-out"
           size={24}
           color="#FFB84D"
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigate('Home')}
         />
       </Header>
       <FilterContainer>
